@@ -1,2 +1,2 @@
 # odin-library
-The Odin Project | JavaScript | Project: Library
+The Odin Project | Full Stack JavaScript | JavaScript | Project: Library
