@@ -47,14 +47,32 @@ function addBookToLibrary() {
     const year = prompt('Enter book year');
     const read = prompt('Have you read it? y/n', 'y');
 
-    if (!title || !author || !year || !read) {
-        return alert('All fields must be completed.');
-    }
+    if (title && author && year && read) {
+        const book = new Book(title, author, year, read === 'y');
     
-    const book = new Book(title, author, year, read === 'y');
-
-    myLibrary.push(book);
+        myLibrary.push(book);
+    } else {
+        alert('All fields must be completed.');
+    }
 }
 
-addBookToLibrary();
+function addBooksToDOM() {
+    const books = document.querySelector('.books');
+    myLibrary.map((obj) => {
+        const book = document.createElement('div');
+        book.classList.add('book');
+        book.innerHTML = `
+            <ul>
+                <li class='title'>${obj.title}</li>
+                <li>${obj.author}</li>
+                <li>${obj.year}</li>
+                <li>${obj.read}</li>
+            </ul>
+        `;
+        books.appendChild(book)
+    });
+}
+
+// addBookToLibrary();
+addBooksToDOM();
 console.log(myLibrary);
