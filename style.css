@@ -9,36 +9,77 @@ html {
     padding: 0;
 }
 
+/*-----*/
+
 body {
     display: flex;
     flex-direction: column;
 }
 
+/* Nav bar */
 nav {
-    height: 100px;
+    height: 80px;
     background-color: darkgray;
+    display: flex;
+}
+
+nav > h1 {
+    font-size: xx-large;
+    margin: auto;
 }
 
 /* Books container */
 .books {
-    padding: 20px;
-    min-height: calc(100vh - 100px);
+    padding: 30px;
+    min-height: calc(100vh - 120px);
     background-color: black;
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
 /* Book */
 .book {
     height: 200px;
-    background-color: silver;
-    border: 1px solid black;
-    color: black;
+    padding: 20px;
+    background-color: ghostwhite;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+}
+
+.book ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .book li {
-    padding: 5px;
     list-style: none;
+}
+
+.book .title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/*Footer*/
+footer {
+    height: 40px;
+    display: flex;
+    background-color: darkgray;
+}
+
+footer p {
+    margin: auto;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+}
+
+footer img {
+    height: 1.1em;
+    width: auto;
+    margin: 0 2px;
 }

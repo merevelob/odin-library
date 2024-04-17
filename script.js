@@ -66,7 +66,7 @@ function addBooksToDOM() {
                 <li class='title'>${obj.title}</li>
                 <li>${obj.author}</li>
                 <li>${obj.year}</li>
-                <li>${obj.read}</li>
+                <li>Read: ${obj.read}</li>
             </ul>
         `;
         books.appendChild(book)
