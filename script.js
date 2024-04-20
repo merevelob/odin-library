@@ -1,31 +1,34 @@
-// Books array
-// const myLibrary = [];
+// DOM Elements
+const newBtn = document.querySelector('#newBtn');
+const dialog = document.querySelector('dialog');
+const form = document.querySelector('form');
+const cancelBtn = document.querySelector('#cancelBtn');
 
-// Sample books
+// Books array with sample books
 const myLibrary = [
     {
         title: 'La María',
         author: 'Jorge Isaacs',
         year: 1867,
-        read: true,
+        read: 'Yes',
     },
     {
         title: 'El túnel',
         author: 'Ernesto Sábato',
         year: 1948,
-        read: true,
+        read: 'Yes',
     },
     {
         title: 'Lord of the Flies',
         author: 'William Golding',
         year: 1954,
-        read: true,
+        read: 'Yes',
     },
     {
         title: 'Cien años de soledad',
         author: 'Gabriel García Márquez',
         year: 1967,
-        read: false,
+        read: 'No',
     },
 ];
 
@@ -37,27 +40,22 @@ function Book(title, author, year, read) {
     this.read = read;
 }
 
-/* Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, year ${this.year}, ${(this.read) ? 'read' : 'not read yet'}`;
-}; */
-  
 function addBookToLibrary() {
-    const title = prompt('Enter book title');
-    const author = prompt('Enter book author');
-    const year = prompt('Enter book year');
-    const read = prompt('Have you read it? y/n', 'y');
-
-    if (title && author && year && read) {
-        const book = new Book(title, author, year, read === 'y');
+    // Get values from form to add a new book
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const year = document.getElementById('year').value;
+    const read = document.querySelector('input[name="read"]:checked').value;
     
+    if (title && author && year && read) {
+        const book = new Book(title, author, year, read);
         myLibrary.push(book);
-    } else {
-        alert('All fields must be completed.');
     }
 }
 
 function addBooksToDOM() {
     const books = document.querySelector('.books');
+    books.innerHTML = '';
     myLibrary.map((obj) => {
         const book = document.createElement('div');
         book.classList.add('book');
@@ -73,6 +71,20 @@ function addBooksToDOM() {
     });
 }
 
-// addBookToLibrary();
-addBooksToDOM();
-console.log(myLibrary);
+function closeModal() {
+    dialog.close();
+    form.reset();
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    addBookToLibrary();
+    addBooksToDOM();
+    closeModal();
+}
+
+// Event listeners
+window.addEventListener('DOMContentLoaded', addBooksToDOM);
+newBtn.addEventListener('click', () => dialog.showModal());
+form.addEventListener('submit', handleSubmit);
+cancelBtn.addEventListener('click', closeModal);

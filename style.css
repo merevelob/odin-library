@@ -37,6 +37,13 @@ nav button {
     cursor: pointer;
 }
 
+/* Modal */
+dialog {
+    height: 400px;
+    width: 400px;
+    margin: auto;
+}
+
 /* Books container */
 .books {
     padding: 30px;

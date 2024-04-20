@@ -16,5 +16,37 @@
     <footer>
         <p>TOP 2024 | JavaScript | Project: Library | <a href="https://github.com/merevelob"><img src="./assets/github.svg" alt=""/></a> merevelob</p>
     </footer>
+    <dialog>
+        <form>
+            <p>Add a new book!</p>
+            <p>
+                <label for="title">
+                    Title:
+                    <input type="text" name="title" id="title" required>
+                </label>
+            </p>
+            <p>
+                <label for="author">
+                    Author:
+                    <input type="text" name="author" id="author" required>
+                </label>
+            </p>
+            <p>
+                <label for="year">
+                    Year:
+                    <input type="number" min="1" max="2100" name="year" id="year" required>
+                </label>
+            </p>
+            <fieldset>
+                <legend>Have you read it?</legend>
+                <label><input type="radio" name="read" value="Yes" required> Yes</label>
+                <label><input type="radio" name="read" value="No" required> No</label>
+            </fieldset>
+            <div class="form-buttons">
+                <button id="confirmBtn" type="submit">Confirm</button>
+                <button id="cancelBtn" type="button">Cancel</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
