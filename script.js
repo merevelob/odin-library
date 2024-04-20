@@ -56,9 +56,10 @@ function addBookToLibrary() {
 function addBooksToDOM() {
     const books = document.querySelector('.books');
     books.innerHTML = '';
-    myLibrary.map((obj) => {
+    myLibrary.map((obj, index) => {
         const book = document.createElement('div');
         book.classList.add('book');
+        book.setAttribute('data-index', index);
         book.innerHTML = `
             <ul>
                 <li class='title'>${obj.title}</li>
