@@ -57,12 +57,23 @@ dialog {
 
 /* Book */
 .book {
+    position: relative;
     height: 200px;
     padding: 20px;
+    padding-right: 35px;
     background-color: ghostwhite;
     border: none;
     border-radius: 10px;
     display: flex;
+}
+
+.book .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 1.5em;
+    width: auto;
+    cursor: pointer;
 }
 
 .book ul {
