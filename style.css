@@ -9,6 +9,17 @@ html {
     padding: 0;
 }
 
+/* Fonts */
+@font-face {
+    font-family: 'Gruenewald';
+    src: url('./assets/fonts/Gruenewald\ VA\ normal.ttf');
+}
+
+@font-face {
+    font-family: 'Olivetti2';
+    src: url('./assets/fonts/Olivetti\ Type2.ttf');
+}
+
 /*-----*/
 
 body {
@@ -27,9 +38,11 @@ nav {
 
 nav h1 {
     font-size: xx-large;
+    font-family: 'Gruenewald';
 }
 
 nav button {
+    font-family: 'Courier New', Courier, monospace;
     padding: 0.5em;
     margin-left: auto;
     border: none;
@@ -39,6 +52,7 @@ nav button {
 
 /* Modal */
 dialog {
+    font-family: 'Courier New', Courier, monospace;
     height: 400px;
     width: 400px;
     margin: auto;
@@ -84,6 +98,7 @@ dialog {
 }
 
 .book ul {
+    font-family: 'Olivetti2';
     display: flex;
     flex-direction: column;
     justify-content: space-between;
