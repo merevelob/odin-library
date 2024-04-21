@@ -67,13 +67,20 @@ dialog {
     display: flex;
 }
 
-.book .close {
+.book .btn {
     position: absolute;
-    top: 5px;
     right: 5px;
     height: 1.5em;
     width: auto;
     cursor: pointer;
+}
+
+.book .close {
+    top: 5px;
+}
+
+.book .read {
+    bottom: 5px;
 }
 
 .book ul {

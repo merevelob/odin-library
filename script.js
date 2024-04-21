@@ -67,7 +67,8 @@ function addBooksToDOM() {
                 <li>${obj.year}</li>
                 <li>Read: ${obj.read}</li>
             </ul>
-            <img src="./assets/close.svg" class="close" alt="">
+            <img src="./assets/close.svg" class="btn close" alt="">
+            <img src="./assets/read.svg" class="btn read" alt="">
         `;
         books.appendChild(book)
     });
