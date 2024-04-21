@@ -5,33 +5,8 @@ const dialog = document.querySelector('dialog');
 const form = document.querySelector('form');
 const cancelBtn = document.querySelector('#cancelBtn');
 
-// Books array with sample books
-const myLibrary = [
-    {
-        title: 'La María',
-        author: 'Jorge Isaacs',
-        year: 1867,
-        read: 'Yes',
-    },
-    {
-        title: 'El túnel',
-        author: 'Ernesto Sábato',
-        year: 1948,
-        read: 'Yes',
-    },
-    {
-        title: 'Lord of the Flies',
-        author: 'William Golding',
-        year: 1954,
-        read: 'Yes',
-    },
-    {
-        title: 'Cien años de soledad',
-        author: 'Gabriel García Márquez',
-        year: 1967,
-        read: 'No',
-    },
-];
+// Books array
+const myLibrary = [];
 
 // Book constructor
 function Book(title, author, year, read) {    
@@ -41,17 +16,9 @@ function Book(title, author, year, read) {
     this.read = read;
 }
 
-function addBookToLibrary() {
-    // Get values from form to add a new book
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const year = document.getElementById('year').value;
-    const read = document.querySelector('input[name="read"]:checked').value;
-    
-    if (title && author && year && read) {
-        const book = new Book(title, author, year, read);
-        myLibrary.push(book);
-    }
+function addBookToLibrary(title, author, year, read) {
+    const book = new Book(title, author, year, read);
+    myLibrary.push(book);
 }
 
 function addBooksToDOM() {
@@ -74,6 +41,13 @@ function addBooksToDOM() {
     });
 }
 
+function addSampleBooks() {
+    addBookToLibrary('María', 'Jorge Isaacs', 1867, 'Yes');
+    addBookToLibrary('El túnel', 'Ernesto Sábato', 1948, 'Yes');
+    addBookToLibrary('Lord of the Flies', 'William Golding', 1954, 'Yes');
+    addBookToLibrary('Cien años de soledad', 'Gabriel García Márquez', 1967, 'No');
+}
+
 function closeModal() {
     dialog.close();
     form.reset();
@@ -81,25 +55,59 @@ function closeModal() {
 
 function handleSubmit(event) {
     event.preventDefault();
-    addBookToLibrary();
+
+    // Get values from form to add a new book
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const year = document.getElementById('year').value;
+    const read = document.querySelector('input[name="read"]:checked').value;
+
+    addBookToLibrary(title, author, year, read);
     addBooksToDOM();
     closeModal();
 }
 
-function removeBook(event) {
-    // Event delegation to close button
-    if (event.target.classList.contains('close')) {
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    addBooksToDOM();
+}
+
+// Toggle read status
+Book.prototype.toggleRead = function() {
+    if (this.read === 'Yes') {
+        this.read = 'No';
+    } else {
+        this.read = 'Yes';
+    }
+    addBooksToDOM();
+};
+
+function handleClick(event) {
+    // Event delegation to the close and read buttons
+    if (event.target.classList.contains('btn')) {
         const bookIndex = event.target.parentElement.dataset.index;
-        // Remove book from array
-        myLibrary.splice(bookIndex, 1);
-        // Re render books
-        addBooksToDOM();
+        if (event.target.classList.contains('close')) {
+            removeBook(bookIndex);
+        } else if (event.target.classList.contains('read')) {
+            myLibrary[bookIndex].toggleRead();
+        }
     }
 }
 
-// Event listeners
-window.addEventListener('DOMContentLoaded', addBooksToDOM);
-newBtn.addEventListener('click', () => dialog.showModal());
-form.addEventListener('submit', handleSubmit);
-cancelBtn.addEventListener('click', closeModal);
-books.addEventListener('click', removeBook);
+
+function init() {
+    // Add event listeners
+    newBtn.addEventListener('click', () => dialog.showModal());
+    form.addEventListener('submit', handleSubmit);
+    cancelBtn.addEventListener('click', closeModal);
+    books.addEventListener('click', handleClick);
+    
+    // Add hardcoded books
+    addSampleBooks();
+
+    // Render books
+    addBooksToDOM();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', init);
