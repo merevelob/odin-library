@@ -53,7 +53,7 @@ nav h1 {
     margin-left: 10px;
 }
 
-nav button {
+button {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     padding: 0.5em;
@@ -77,6 +77,62 @@ dialog {
     height: 400px;
     width: 400px;
     margin: auto;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: ghostwhite;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(4px);
+}
+
+/* Form */
+form {
+    height: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+}
+
+form p:first-child {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+form p + p label {
+    padding-left: 6px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+}
+
+form p + p input {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 4px;
+    font-size: medium;
+}
+
+form input {
+    outline-color: gray;
+}
+
+fieldset {
+    padding: 8px 4px;
+}
+
+.form-buttons {
+    place-self: end center;
+}
+
+.form-buttons button {
+    margin: 0;
+    background-color: gray;
+}
+
+.form-buttons button:hover {
+    background-color: darkgray;
 }
 
 /* Books container */
