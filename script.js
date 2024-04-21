@@ -1,4 +1,5 @@
 // DOM Elements
+const books = document.querySelector('.books');
 const newBtn = document.querySelector('#newBtn');
 const dialog = document.querySelector('dialog');
 const form = document.querySelector('form');
@@ -54,7 +55,6 @@ function addBookToLibrary() {
 }
 
 function addBooksToDOM() {
-    const books = document.querySelector('.books');
     books.innerHTML = '';
     myLibrary.map((obj, index) => {
         const book = document.createElement('div');
@@ -85,8 +85,20 @@ function handleSubmit(event) {
     closeModal();
 }
 
+function removeBook(event) {
+    // Event delegation to close button
+    if (event.target.classList.contains('close')) {
+        const bookIndex = event.target.parentElement.dataset.index;
+        // Remove book from array
+        myLibrary.splice(bookIndex, 1);
+        // Re render books
+        addBooksToDOM();
+    }
+}
+
 // Event listeners
 window.addEventListener('DOMContentLoaded', addBooksToDOM);
 newBtn.addEventListener('click', () => dialog.showModal());
 form.addEventListener('submit', handleSubmit);
 cancelBtn.addEventListener('click', closeModal);
+books.addEventListener('click', removeBook);
