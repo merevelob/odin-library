@@ -176,6 +176,7 @@ fieldset {
 }
 
 .title + li {
+    font-size: 17px;
     filter: drop-shadow(0 0 1px gray);
 }
 
@@ -209,17 +210,18 @@ footer {
     height: 40px;
     display: flex;
     background-color: darkgray;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 footer p {
     margin: auto;
     text-align: center;
-    font-size: 14px;
+    font-size: small;
     display: flex;
 }
 
 footer img {
-    height: 1.1em;
+    height: 1.4em;
     width: auto;
-    margin: 0 2px;
+    margin: -2px 2px 0;
 }
