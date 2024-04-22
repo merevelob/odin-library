@@ -29,15 +29,15 @@ function addBooksToDOM() {
         book.setAttribute('data-index', index);
         book.innerHTML = `
             <ul>
-                <li class='title'>${obj.title}</li>
+                <li class="title">${obj.title}</li>
                 <li>${obj.author}</li>
                 <li>${obj.year}</li>
                 <li>Read: ${obj.read}</li>
             </ul>
             <img src="./assets/close.svg" class="btn close" alt="">
-            <img src="./assets/read.svg" class="btn read" alt="">
+            <img src="./assets/read.svg" class="btn read ${obj.read === 'Yes' ? 'yes' : 'no'}" alt="">
         `;
-        books.appendChild(book)
+        books.appendChild(book);
     });
 }
 
